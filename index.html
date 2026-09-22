@@ -1,0 +1,2134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Flores Amarillas</title>
+
+<style>
+
+/* =========================================================
+   CONFIGURACIÓN GENERAL
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dff5ff,
+            #c9eaff,
+            #b9ddf0
+        );
+
+    position: relative;
+}
+
+
+/* =========================================================
+   PORTADA
+========================================================= */
+
+#entrada {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100vw;
+    height: 100dvh;
+
+    z-index: 9999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ccecff,
+            #a9d9ef
+        );
+
+    transition:
+        transform 1s cubic-bezier(.77,0,.18,1),
+        opacity .8s ease;
+}
+
+#entrada.salir {
+
+    transform: translateY(-100%);
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+.entrada-contenido {
+
+    width: 90%;
+
+    max-width: 420px;
+
+    text-align: center;
+}
+
+.entrada-foto {
+
+    width: min(70vw, 300px);
+
+    height: min(70vw, 300px);
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 7px solid rgba(255,255,255,.9);
+
+    box-shadow:
+        0 18px 45px rgba(40,80,100,.3);
+
+    cursor: pointer;
+
+    animation:
+        entrada-flotar 3s ease-in-out infinite;
+}
+
+.entrada-texto {
+
+    margin-top: 14px;
+
+    color: #527080;
+
+    font-size: 21px;
+
+    font-weight: bold;
+}
+
+.entrada-flecha {
+
+    margin-top: 7px;
+
+    color: #d1a000;
+
+    font-size: 38px;
+
+    line-height: 1;
+
+    animation:
+        flecha 1.3s ease-in-out infinite;
+}
+
+#error-imagen {
+
+    display: none;
+
+    margin-top: 20px;
+
+    padding: 12px;
+
+    border-radius: 12px;
+
+    background: rgba(255,255,255,.65);
+
+    color: #7a5555;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+}
+
+@keyframes entrada-flotar {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes flecha {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+
+/* =========================================================
+   LLUVIA DE MARGARITAS
+========================================================= */
+
+.lluvia {
+
+    position: fixed;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+.flor-caida {
+
+    position: absolute;
+
+    top: -30px;
+
+    width: 15px;
+    height: 15px;
+
+    opacity: .7;
+
+    animation:
+        caer linear infinite,
+        balancear ease-in-out infinite alternate;
+}
+
+.flor-caida::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 7px;
+    height: 11px;
+
+    left: 4px;
+    top: 0;
+
+    background: white;
+
+    border-radius: 50%;
+
+    box-shadow:
+        -6px 5px 0 white,
+         6px 5px 0 white,
+         0 10px 0 white;
+}
+
+.flor-caida::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    left: 5px;
+    top: 5px;
+
+    border-radius: 50%;
+
+    background: #c6a200;
+}
+
+@keyframes caer {
+
+    from {
+        transform:
+            translateY(-40px)
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            translateY(110vh)
+            rotate(360deg);
+    }
+}
+
+@keyframes balancear {
+
+    from {
+        margin-left: -25px;
+    }
+
+    to {
+        margin-left: 25px;
+    }
+}
+
+
+/* =========================================================
+   TÍTULO
+========================================================= */
+
+.titulo {
+
+    position: absolute;
+
+    top: 3.5vh;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width: 94%;
+
+    z-index: 80;
+
+    text-align: center;
+
+    color: #075a96;
+
+    font-size:
+        clamp(30px, 5vw, 58px);
+
+    line-height: 1.05;
+
+    font-weight: bold;
+
+    text-shadow:
+        3px 3px white,
+        0 5px 15px rgba(50,90,110,.15);
+}
+
+
+/* =========================================================
+   MENSAJE
+========================================================= */
+
+.mensaje {
+
+    position: absolute;
+
+    z-index: 70;
+
+    left: 4vw;
+
+    top: 53%;
+
+    transform:
+        translateY(-50%);
+
+    width: 39vw;
+
+    max-width: 560px;
+
+    max-height: 67vh;
+
+    overflow: hidden;
+
+    text-align: center;
+
+    color: #405f70;
+
+    padding: 10px;
+}
+
+.mensaje h2 {
+
+    color: #075a96;
+
+    font-size:
+        clamp(38px, 5vw, 72px);
+
+    line-height: 1;
+
+    margin-bottom: 20px;
+
+    text-shadow:
+        3px 3px white,
+        0 5px 15px rgba(0,0,0,.12);
+}
+
+.mensaje p {
+
+    font-size:
+        clamp(16px, 1.7vw, 24px);
+
+    line-height: 1.38;
+
+    text-shadow:
+        1px 1px white;
+}
+
+
+/* =========================================================
+   RAMO
+========================================================= */
+
+.ramo {
+
+    position: absolute;
+
+    z-index: 20;
+
+    right: -1vw;
+
+    bottom: -1vh;
+
+    width: 59vw;
+
+    height: 82vh;
+
+    max-width: 850px;
+
+    max-height: 850px;
+}
+
+
+/* =========================================================
+   PUNTO DONDE SE JUNTAN LOS TALLOS
+========================================================= */
+
+.ramo::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 15%;
+
+    width: 105px;
+
+    height: 55px;
+
+    transform:
+        translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        rgba(48,91,35,.22);
+
+    filter:
+        blur(10px);
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   TALLOS PRINCIPALES
+========================================================= */
+
+.tallo {
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 13%;
+
+    width: 7px;
+
+    height: 62%;
+
+    transform-origin: bottom center;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #315c25,
+            #73a946,
+            #396b29
+        );
+
+    z-index: 4;
+}
+
+.tallo:nth-child(1) {
+    transform: rotate(-28deg);
+}
+
+.tallo:nth-child(2) {
+    transform: rotate(-21deg);
+    height: 67%;
+}
+
+.tallo:nth-child(3) {
+    transform: rotate(-14deg);
+    height: 72%;
+}
+
+.tallo:nth-child(4) {
+    transform: rotate(-7deg);
+    height: 75%;
+}
+
+.tallo:nth-child(5) {
+    transform: rotate(7deg);
+    height: 74%;
+}
+
+.tallo:nth-child(6) {
+    transform: rotate(14deg);
+    height: 70%;
+}
+
+.tallo:nth-child(7) {
+    transform: rotate(21deg);
+    height: 65%;
+}
+
+.tallo:nth-child(8) {
+    transform: rotate(28deg);
+    height: 59%;
+}
+
+
+/* =========================================================
+   FLORES DEL RAMO
+========================================================= */
+
+.flor {
+
+    position: absolute;
+
+    left: var(--x);
+    top: var(--y);
+
+    width: var(--size);
+    height: var(--size);
+
+    transform:
+        translate(-50%, -50%)
+        rotate(var(--rot))
+        scale(var(--scale));
+
+    transform-origin: center;
+
+    z-index: var(--z);
+
+    animation:
+        flor-respirar 4s ease-in-out infinite;
+
+    animation-delay:
+        var(--delay);
+
+    filter:
+        drop-shadow(
+            0 5px 4px rgba(0,0,0,.08)
+        );
+}
+
+
+/* tallo individual */
+
+.flor::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 62%;
+
+    width: 7px;
+
+    height: var(--stem);
+
+    transform:
+        translateX(-50%)
+        rotate(var(--stem-angle));
+
+    transform-origin: top center;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #315c25,
+            #72a747,
+            #396b29
+        );
+
+    z-index: -2;
+}
+
+@keyframes flor-respirar {
+
+    0%,100% {
+        margin-top: 0;
+    }
+
+    50% {
+        margin-top: -5px;
+    }
+}
+
+
+/* =========================================================
+   PÉTALOS
+========================================================= */
+
+.petalo {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform-origin:
+        50% 100%;
+
+    border-radius:
+        55% 55% 45% 45%;
+}
+
+
+/* =========================================================
+   GIRASOL
+========================================================= */
+
+.girasol .petalo {
+
+    width: 30%;
+    height: 51%;
+
+    margin-left: -15%;
+    margin-top: -47%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff45d,
+            #f0ad00
+        );
+
+    border-radius:
+        60% 60% 45% 45%;
+}
+
+.girasol .centro {
+
+    position: absolute;
+
+    width: 34%;
+    height: 34%;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #4e2900 0%,
+            #805000 45%,
+            #b37500 70%,
+            #563000 100%
+        );
+
+    box-shadow:
+        inset 0 0 0 5px rgba(60,30,0,.25);
+
+    z-index: 10;
+}
+
+
+/* =========================================================
+   GERBERA
+========================================================= */
+
+.gerbera .petalo {
+
+    width: 21%;
+    height: 48%;
+
+    margin-left: -10.5%;
+    margin-top: -44%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff56d,
+            #edb000
+        );
+}
+
+.gerbera .segunda {
+
+    position: absolute;
+
+    inset: 0;
+
+    transform:
+        rotate(22.5deg);
+}
+
+.gerbera .segunda .petalo {
+
+    width: 18%;
+    height: 43%;
+
+    margin-left: -9%;
+    margin-top: -40%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffbd0,
+            #ffd42d
+        );
+}
+
+.gerbera .centro {
+
+    position: absolute;
+
+    width: 28%;
+    height: 28%;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #593000,
+            #986000,
+            #603500
+        );
+
+    z-index: 10;
+}
+
+
+/* =========================================================
+   MARGARITAS
+========================================================= */
+
+.margarita .petalo {
+
+    width: 24%;
+    height: 49%;
+
+    margin-left: -12%;
+    margin-top: -46%;
+}
+
+
+/* MARGARITA BLANCA */
+
+.margarita.blanca .petalo {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f4f0d9
+        );
+}
+
+.margarita.blanca .centro {
+
+    background:
+        radial-gradient(
+            circle,
+            #6f8b26,
+            #a8bc43,
+            #58701e
+        );
+}
+
+
+/* MARGARITA AMARILLA */
+
+.margarita.amarilla .petalo {
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff45d,
+            #efb500
+        );
+}
+
+.margarita.amarilla .centro {
+
+    background:
+        radial-gradient(
+            circle,
+            #758b20,
+            #a9b936,
+            #536819
+        );
+}
+
+
+.margarita .centro {
+
+    position: absolute;
+
+    width: 25%;
+    height: 25%;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    border-radius: 50%;
+
+    z-index: 10;
+}
+
+/* =========================================================
+   ENVOLTURA CLÁSICA DEL RAMO
+========================================================= */
+
+.papel {
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 8%;
+
+    transform:
+        translateX(-50%);
+
+    width: 52%;
+
+    height: 46%;
+
+    z-index: 60;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffef8,
+            #eee3c7
+        );
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            56% 100%,
+            44% 100%
+        );
+
+    filter:
+        drop-shadow(
+            0 12px 12px rgba(0,0,0,.15)
+        );
+}
+
+
+/* =========================================================
+   PUNTA INVERTIDA DEL PAPEL
+========================================================= */
+
+.punta-papel {
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 0;
+
+    transform:
+        translateX(-50%);
+
+    width: 21%;
+
+    height: 17%;
+
+    z-index: 62;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fffdf5,
+            #dfd0ad
+        );
+
+    clip-path:
+        polygon(
+            0 100%,
+            100% 100%,
+            50% 0
+        );
+
+    filter:
+        drop-shadow(
+            0 8px 8px rgba(0,0,0,.12)
+        );
+}
+
+
+/* =========================================================
+   LISTÓN AZUL
+========================================================= */
+
+.cinta {
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 12%;
+
+    transform:
+        translateX(-50%);
+
+    width: 14%;
+
+    height: 8%;
+
+    z-index: 75;
+
+    background:
+        linear-gradient(
+            90deg,
+            #0d5b91,
+            #55a9d6,
+            #0d5b91
+        );
+
+    border-radius:
+        5px;
+
+    box-shadow:
+        0 3px 7px rgba(0,0,0,.18);
+}
+
+
+/* cola izquierda */
+
+.cinta::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 8%;
+
+    top: 72%;
+
+    width: 45%;
+
+    height: 135%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0d5b91,
+            #55a9d6
+        );
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            82% 100%,
+            48% 78%,
+            8% 100%
+        );
+
+    transform:
+        rotate(7deg);
+
+    transform-origin:
+        top center;
+}
+
+
+/* cola derecha */
+
+.cinta::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: 8%;
+
+    top: 72%;
+
+    width: 45%;
+
+    height: 135%;
+
+    background:
+        linear-gradient(
+            225deg,
+            #0d5b91,
+            #55a9d6
+        );
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            92% 100%,
+            52% 78%,
+            18% 100%
+        );
+
+    transform:
+        rotate(-7deg);
+
+    transform-origin:
+        top center;
+}
+
+
+/* =========================================================
+   CONTADOR
+========================================================= */
+
+.contador {
+
+    position: absolute;
+
+    left: 22px;
+    bottom: 22px;
+
+    z-index: 100;
+
+    color: #476474;
+
+    font-size:
+        clamp(15px, 1.7vw, 22px);
+
+    padding:
+        10px 16px;
+
+    border-radius: 15px;
+
+    background:
+        rgba(255,255,255,.5);
+
+    backdrop-filter:
+        blur(6px);
+}
+
+.contador strong {
+    color: #bd9000;
+}
+
+
+/* =========================================================
+   BOTÓN DE MÚSICA
+========================================================= */
+
+.musica {
+
+    position: absolute;
+
+    right: 22px;
+    bottom: 22px;
+
+    z-index: 100;
+}
+
+.musica button {
+
+    border: none;
+
+    border-radius: 30px;
+
+    padding:
+        11px 18px;
+
+    font-size: 15px;
+
+    color: #536c79;
+
+    background:
+        rgba(255,255,255,.75);
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.12);
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   TABLETS / MÓVILES
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .titulo {
+
+        top: 2.5vh;
+
+        width: 92%;
+
+        font-size:
+            clamp(26px, 7vw, 40px);
+
+        line-height: 1.08;
+    }
+
+    .mensaje {
+
+        left: 3%;
+
+        top: 48%;
+
+        width: 44%;
+
+        max-height: 63vh;
+
+        padding: 4px;
+    }
+
+    .mensaje h2 {
+
+        font-size:
+            clamp(31px, 10vw, 53px);
+
+        margin-bottom: 12px;
+    }
+
+    .mensaje p {
+
+        font-size:
+            clamp(13px, 3.7vw, 19px);
+
+        line-height: 1.35;
+    }
+
+    .ramo {
+
+        right: -12%;
+
+        bottom: -1vh;
+
+        width: 67vw;
+
+        height: 73vh;
+    }
+
+    .papel {
+
+        width: 55%;
+
+        height: 47%;
+
+        bottom: 6%;
+    }
+
+    .punta-papel {
+
+        width: 22%;
+
+        height: 18%;
+
+        bottom: 0;
+    }
+
+    .cinta {
+
+        bottom: 11%;
+
+        width: 15%;
+
+        height: 8%;
+    }
+
+    .hoja {
+
+        width: 75px;
+        height: 30px;
+    }
+
+    .contador {
+
+        left: 10px;
+        bottom: 10px;
+
+        font-size: 12px;
+
+        padding:
+            7px 10px;
+    }
+
+    .musica {
+
+        right: 10px;
+        bottom: 10px;
+    }
+
+    .musica button {
+
+        padding:
+            8px 12px;
+
+        font-size: 12px;
+    }
+}
+
+
+/* =========================================================
+   CELULARES ESTRECHOS
+========================================================= */
+
+@media (max-width: 420px) {
+
+    .titulo {
+
+        top: 2vh;
+
+        font-size: 25px;
+    }
+
+    .mensaje {
+
+        left: 2%;
+
+        top: 48%;
+
+        width: 43%;
+
+        max-height: 60vh;
+    }
+
+    .mensaje h2 {
+
+        font-size: 35px;
+    }
+
+    .mensaje p {
+
+        font-size: 12px;
+
+        line-height: 1.32;
+    }
+
+    .ramo {
+
+        right: -21%;
+
+        width: 72vw;
+
+        height: 68vh;
+    }
+
+    .papel {
+
+        width: 56%;
+
+        height: 48%;
+
+        bottom: 5%;
+    }
+
+    .punta-papel {
+
+        width: 23%;
+
+        height: 18%;
+
+        bottom: 0;
+    }
+
+    .cinta {
+
+        bottom: 10%;
+
+        width: 16%;
+
+        height: 8%;
+    }
+
+    .contador {
+
+        font-size: 10px;
+    }
+
+    .musica button {
+
+        font-size: 10px;
+
+        padding:
+            7px 10px;
+    }
+
+}
+
+
+/* =========================================================
+   CELULAR MUY ALTO
+========================================================= */
+
+@media (max-width: 420px) and (min-height: 750px) {
+
+    .mensaje {
+
+        top: 50%;
+
+        width: 44%;
+    }
+
+    .mensaje p {
+
+        font-size: 13px;
+    }
+
+    .ramo {
+
+        right: -17%;
+
+        width: 70vw;
+
+        height: 70vh;
+    }
+
+    .papel {
+
+        height: 49%;
+
+        bottom: 5%;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =======================================================
+     PORTADA
+======================================================= -->
+
+<div id="entrada">
+
+    <div class="entrada-contenido">
+
+        <img
+            class="entrada-foto"
+            src="Floricienta.jpg"
+            alt="Floricienta"
+            onclick="abrirPagina()"
+            onerror="imagenNoEncontrada()"
+        >
+
+        <div class="entrada-flecha">
+            ↑
+        </div>
+
+        <div class="entrada-texto">
+            Pícale aquí ♡
+        </div>
+
+        <div id="error-imagen">
+            No pude encontrar <b>Floricienta.jpg</b>.<br>
+            Revisa que esté en la misma carpeta que index.html.
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     MÚSICA
+======================================================= -->
+
+<audio
+    id="audio"
+    loop
+    preload="auto"
+>
+
+    <source
+        src="Flores Amarillas.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
+<!-- =======================================================
+     LLUVIA
+======================================================= -->
+
+<div class="lluvia">
+
+    <div class="flor-caida" style="left:3%;animation-duration:9s;animation-delay:-2s"></div>
+    <div class="flor-caida" style="left:11%;animation-duration:12s;animation-delay:-8s"></div>
+    <div class="flor-caida" style="left:19%;animation-duration:10s;animation-delay:-4s"></div>
+    <div class="flor-caida" style="left:28%;animation-duration:14s;animation-delay:-11s"></div>
+    <div class="flor-caida" style="left:38%;animation-duration:11s;animation-delay:-6s"></div>
+    <div class="flor-caida" style="left:48%;animation-duration:13s;animation-delay:-3s"></div>
+    <div class="flor-caida" style="left:58%;animation-duration:9s;animation-delay:-7s"></div>
+    <div class="flor-caida" style="left:68%;animation-duration:12s;animation-delay:-10s"></div>
+    <div class="flor-caida" style="left:78%;animation-duration:10s;animation-delay:-5s"></div>
+    <div class="flor-caida" style="left:88%;animation-duration:15s;animation-delay:-12s"></div>
+    <div class="flor-caida" style="left:96%;animation-duration:11s;animation-delay:-1s"></div>
+
+</div>
+
+
+<!-- =======================================================
+     TÍTULO
+======================================================= -->
+
+<div class="titulo">
+
+    Feliz Día de las Flores Amarillas!!!!!!!
+
+</div>
+
+
+<!-- =======================================================
+     MENSAJE
+     ✏️ PUEDES CAMBIAR SOLAMENTE LO QUE ESTÁ AQUÍ
+======================================================= -->
+
+<div class="mensaje">
+
+    <h2>
+        Yo massssss!!!!
+    </h2>
+
+    <p>
+
+        Te amo mucho mi amor,
+        disculpame por no poderte
+        mandar flores este año :(
+        peroooo no podia no hacer nada
+        y talvez no es el mejor
+        pero quiero que sepas
+        que me esforce mucho
+        bueno aunque chat gpt hizo
+        las animaciones porque sino
+        me toma dias hacerlo
+
+        <br><br>
+
+        Gracias por estos casi
+        5 mesesitos juntas.
+        Te amo muchisimo mi Rockstar
+
+    </p>
+
+</div>
+
+
+<!-- =======================================================
+     RAMO
+======================================================= -->
+
+<div class="ramo">
+
+    <!-- Tallos principales -->
+
+    <div class="tallo"></div>
+    <div class="tallo"></div>
+    <div class="tallo"></div>
+    <div class="tallo"></div>
+    <div class="tallo"></div>
+    <div class="tallo"></div>
+    <div class="tallo"></div>
+    <div class="tallo"></div>
+
+
+    <!-- Hojas -->
+
+    <div class="hoja h1"></div>
+    <div class="hoja h2"></div>
+    <div class="hoja h3"></div>
+    <div class="hoja h4"></div>
+    <div class="hoja h5"></div>
+
+    <!-- Las flores se generan por JavaScript -->
+
+</div>
+
+
+<!-- =======================================================
+     CONTADOR
+======================================================= -->
+
+<div class="contador">
+
+    Llevamos
+
+    <strong>
+        <span id="dias">143</span> días
+    </strong>
+
+    juntas ♡
+
+</div>
+
+
+<!-- =======================================================
+     BOTÓN DE MÚSICA
+======================================================= -->
+
+<div class="musica">
+
+    <button onclick="alternarMusica()">
+        ♪ Música
+    </button>
+
+</div>
+
+
+<script>
+
+
+/* =========================================================
+   GENERADOR DE FLORES
+========================================================= */
+
+const ramo =
+    document.querySelector(".ramo");
+
+
+const flores = [
+
+    /* ===== PARTE TRASERA ===== */
+
+    {
+        tipo:"margarita blanca",
+        x:"23%",
+        y:"21%",
+        size:130,
+        scale:.72,
+        rot:-22,
+        z:12,
+        stem:205,
+        stemAngle:-18,
+        delay:"-.5s"
+    },
+
+    {
+        tipo:"margarita amarilla",
+        x:"37%",
+        y:"11%",
+        size:130,
+        scale:.68,
+        rot:-8,
+        z:10,
+        stem:245,
+        stemAngle:-8,
+        delay:"-1s"
+    },
+
+    {
+        tipo:"margarita amarilla",
+        x:"54%",
+        y:"11%",
+        size:130,
+        scale:.68,
+        rot:12,
+        z:10,
+        stem:245,
+        stemAngle:8,
+        delay:"-1.5s"
+    },
+
+    {
+        tipo:"margarita blanca",
+        x:"69%",
+        y:"21%",
+        size:130,
+        scale:.72,
+        rot:25,
+        z:12,
+        stem:205,
+        stemAngle:18,
+        delay:"-2s"
+    },
+
+    /* ===== GIRASOLES ===== */
+
+    {
+        tipo:"girasol",
+        x:"34%",
+        y:"25%",
+        size:225,
+        scale:.82,
+        rot:-12,
+        z:24,
+        stem:255,
+        stemAngle:-13,
+        delay:"-.7s"
+    },
+
+    {
+        tipo:"girasol",
+        x:"65%",
+        y:"26%",
+        size:225,
+        scale:.82,
+        rot:13,
+        z:23,
+        stem:255,
+        stemAngle:13,
+        delay:"-1.8s"
+    },
+
+    /* ===== GERBERAS ===== */
+
+    {
+        tipo:"gerbera",
+        x:"50%",
+        y:"19%",
+        size:195,
+        scale:.83,
+        rot:0,
+        z:27,
+        stem:270,
+        stemAngle:0,
+        delay:"-1.2s"
+    },
+
+    {
+        tipo:"gerbera",
+        x:"25%",
+        y:"38%",
+        size:180,
+        scale:.74,
+        rot:-20,
+        z:30,
+        stem:170,
+        stemAngle:-22,
+        delay:"-2.5s"
+    },
+
+    {
+        tipo:"gerbera",
+        x:"75%",
+        y:"39%",
+        size:180,
+        scale:.74,
+        rot:20,
+        z:30,
+        stem:170,
+        stemAngle:22,
+        delay:"-3s"
+    },
+
+    /* ===== MARGARITAS DEL CENTRO ===== */
+
+    {
+        tipo:"margarita amarilla",
+        x:"42%",
+        y:"35%",
+        size:130,
+        scale:.75,
+        rot:-15,
+        z:36,
+        stem:165,
+        stemAngle:-8,
+        delay:"-1.4s"
+    },
+
+    {
+        tipo:"margarita amarilla",
+        x:"58%",
+        y:"35%",
+        size:130,
+        scale:.75,
+        rot:15,
+        z:36,
+        stem:165,
+        stemAngle:8,
+        delay:"-2.2s"
+    },
+
+    {
+        tipo:"margarita blanca",
+        x:"34%",
+        y:"44%",
+        size:125,
+        scale:.72,
+        rot:-25,
+        z:38,
+        stem:105,
+        stemAngle:-18,
+        delay:"-3.2s"
+    },
+
+    {
+        tipo:"margarita amarilla",
+        x:"66%",
+        y:"45%",
+        size:125,
+        scale:.72,
+        rot:25,
+        z:38,
+        stem:105,
+        stemAngle:18,
+        delay:"-2.7s"
+    },
+
+    /* ===== FLORES DEL FRENTE ===== */
+
+    {
+        tipo:"margarita amarilla",
+        x:"44%",
+        y:"47%",
+        size:120,
+        scale:.78,
+        rot:-8,
+        z:45,
+        stem:75,
+        stemAngle:-7,
+        delay:"-1.7s"
+    },
+
+    {
+        tipo:"margarita amarilla",
+        x:"56%",
+        y:"48%",
+        size:120,
+        scale:.78,
+        rot:8,
+        z:45,
+        stem:75,
+        stemAngle:7,
+        delay:"-2.9s"
+    },
+
+    {
+        tipo:"margarita blanca",
+        x:"29%",
+        y:"53%",
+        size:115,
+        scale:.64,
+        rot:-28,
+        z:41,
+        stem:45,
+        stemAngle:-25,
+        delay:"-3.5s"
+    },
+
+    {
+        tipo:"margarita amarilla",
+        x:"71%",
+        y:"53%",
+        size:115,
+        scale:.64,
+        rot:28,
+        z:41,
+        stem:45,
+        stemAngle:25,
+        delay:"-4s"
+    },
+
+    {
+        tipo:"margarita amarilla",
+        x:"39%",
+        y:"57%",
+        size:105,
+        scale:.62,
+        rot:-18,
+        z:48,
+        stem:20,
+        stemAngle:-12,
+        delay:"-4.5s"
+    },
+
+    {
+        tipo:"margarita amarilla",
+        x:"61%",
+        y:"57%",
+        size:105,
+        scale:.62,
+        rot:18,
+        z:48,
+        stem:20,
+        stemAngle:12,
+        delay:"-5s"
+    },
+
+    {
+        tipo:"margarita amarilla",
+        x:"50%",
+        y:"53%",
+        size:115,
+        scale:.66,
+        rot:0,
+        z:52,
+        stem:35,
+        stemAngle:0,
+        delay:"-5.5s"
+    }
+
+];
+
+
+/* =========================================================
+   CREAR UNA FLOR
+========================================================= */
+
+function crearFlor(datos) {
+
+    const flor =
+        document.createElement("div");
+
+    flor.className =
+        `flor ${datos.tipo}`;
+
+    flor.style.setProperty(
+        "--x",
+        datos.x
+    );
+
+    flor.style.setProperty(
+        "--y",
+        datos.y
+    );
+
+    flor.style.setProperty(
+        "--size",
+        `${datos.size}px`
+    );
+
+    flor.style.setProperty(
+        "--scale",
+        datos.scale
+    );
+
+    flor.style.setProperty(
+        "--rot",
+        `${datos.rot}deg`
+    );
+
+    flor.style.setProperty(
+        "--z",
+        datos.z
+    );
+
+    flor.style.setProperty(
+        "--stem",
+        `${datos.stem}px`
+    );
+
+    flor.style.setProperty(
+        "--stem-angle",
+        `${datos.stemAngle}deg`
+    );
+
+    flor.style.setProperty(
+        "--delay",
+        datos.delay
+    );
+
+
+    const cantidadPetalos =
+        datos.tipo === "gerbera"
+        ? 16
+        : 12;
+
+
+    const primeraCapa =
+        document.createElement("div");
+
+
+    for (
+        let i = 0;
+        i < cantidadPetalos;
+        i++
+    ) {
+
+        const petalo =
+            document.createElement("div");
+
+        petalo.className =
+            "petalo";
+
+        petalo.style.transform =
+            `rotate(${i * (360 / cantidadPetalos)}deg)`;
+
+        primeraCapa.appendChild(
+            petalo
+        );
+    }
+
+
+    flor.appendChild(
+        primeraCapa
+    );
+
+
+    if (datos.tipo === "gerbera") {
+
+        const segunda =
+            document.createElement("div");
+
+        segunda.className =
+            "segunda";
+
+        for (
+            let i = 0;
+            i < cantidadPetalos;
+            i++
+        ) {
+
+            const petalo =
+                document.createElement("div");
+
+            petalo.className =
+                "petalo";
+
+            petalo.style.transform =
+                `rotate(${i * (360 / cantidadPetalos) + 11}deg)`;
+
+            segunda.appendChild(
+                petalo
+            );
+        }
+
+        flor.appendChild(
+            segunda
+        );
+    }
+
+
+    const centro =
+        document.createElement("div");
+
+    centro.className =
+        "centro";
+
+    flor.appendChild(
+        centro
+    );
+
+
+    ramo.appendChild(
+        flor
+    );
+}
+
+
+/* Crear las 20 flores */
+
+flores.forEach(
+    crearFlor
+);
+
+
+/* =========================================================
+   ENVOLTURA
+========================================================= */
+
+const papel =
+    document.createElement("div");
+
+papel.className =
+    "papel";
+
+ramo.appendChild(
+    papel
+);
+
+
+/* Punta triangular invertida */
+
+const puntaPapel =
+    document.createElement("div");
+
+puntaPapel.className =
+    "punta-papel";
+
+ramo.appendChild(
+    puntaPapel
+);
+
+
+/* Listón azul */
+
+const cinta =
+    document.createElement("div");
+
+cinta.className =
+    "cinta";
+
+ramo.appendChild(
+    cinta
+);
+
+
+/* =========================================================
+   CONTADOR
+========================================================= */
+
+const fechaInicio =
+    new Date("2026-05-01T00:00:00");
+
+
+function actualizarDias() {
+
+    const ahora =
+        new Date();
+
+    const diferencia =
+        ahora - fechaInicio;
+
+    const dias =
+        Math.floor(
+            diferencia /
+            (1000 * 60 * 60 * 24)
+        );
+
+    document.getElementById(
+        "dias"
+    ).textContent = dias;
+}
+
+actualizarDias();
+
+
+/* =========================================================
+   PORTADA + MÚSICA
+========================================================= */
+
+function abrirPagina() {
+
+    const entrada =
+        document.getElementById(
+            "entrada"
+        );
+
+    const audio =
+        document.getElementById(
+            "audio"
+        );
+
+
+    entrada.classList.add(
+        "salir"
+    );
+
+
+    audio.play()
+        .then(() => {
+
+            console.log(
+                "Música iniciada correctamente."
+            );
+
+        })
+        .catch((error) => {
+
+            console.log(
+                "No se pudo reproducir la música:",
+                error
+            );
+
+        });
+}
+
+
+/* =========================================================
+   BOTÓN DE MÚSICA
+========================================================= */
+
+function alternarMusica() {
+
+    const audio =
+        document.getElementById(
+            "audio"
+        );
+
+    if (audio.paused) {
+
+        audio.play()
+            .catch(error => {
+
+                console.log(
+                    "No se pudo reproducir:",
+                    error
+                );
+
+            });
+
+    } else {
+
+        audio.pause();
+
+    }
+}
+
+
+/* =========================================================
+   COMPROBACIÓN DE LA FOTO
+========================================================= */
+
+function imagenNoEncontrada() {
+
+    document.getElementById(
+        "error-imagen"
+    ).style.display = "block";
+}
+
+
+/* =========================================================
+   COMPROBACIÓN DEL AUDIO
+========================================================= */
+
+const audio =
+    document.getElementById("audio");
+
+audio.addEventListener(
+    "error",
+    function() {
+
+        console.log(
+            "No se encontró o no se pudo cargar Flores Amarillas.mp3"
+        );
+
+    }
+);
+
+</script>
+
+</body>
+</html>
