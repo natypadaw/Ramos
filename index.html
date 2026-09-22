@@ -377,6 +377,37 @@ body {
 
 
 /* =========================================================
+   FOTO ENTRE EL MENSAJE Y EL RAMO
+========================================================= */
+
+.foto-amor {
+
+    position: absolute;
+
+    left: 51%;
+
+    top: 80%;
+
+    width: 165px;
+    height: 165px;
+
+    transform:
+        translate(-50%, -50%);
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 5px solid rgba(255,255,255,.95);
+
+    box-shadow:
+        0 7px 18px rgba(40,70,90,.2);
+
+    z-index: 85;
+}
+
+
+/* =========================================================
    RAMO
 ========================================================= */
 
@@ -434,22 +465,28 @@ body {
 
 
 /* =========================================================
-   TALLOS PRINCIPALES
+   TALLO INDIVIDUAL DE CADA FLOR
 ========================================================= */
 
-.tallo {
+.flor::after {
+
+    content: "";
 
     position: absolute;
 
     left: 50%;
 
-    bottom: 13%;
+    top: 62%;
 
-    width: 7px;
+    width: 4px;
 
-    height: 62%;
+    height: var(--stem);
 
-    transform-origin: bottom center;
+    transform:
+        translateX(-50%)
+        rotate(var(--stem-angle));
+
+    transform-origin: top center;
 
     border-radius: 20px;
 
@@ -457,50 +494,11 @@ body {
         linear-gradient(
             90deg,
             #315c25,
-            #73a946,
+            #72a747,
             #396b29
         );
 
-    z-index: 4;
-}
-
-.tallo:nth-child(1) {
-    transform: rotate(-28deg);
-}
-
-.tallo:nth-child(2) {
-    transform: rotate(-21deg);
-    height: 67%;
-}
-
-.tallo:nth-child(3) {
-    transform: rotate(-14deg);
-    height: 72%;
-}
-
-.tallo:nth-child(4) {
-    transform: rotate(-7deg);
-    height: 75%;
-}
-
-.tallo:nth-child(5) {
-    transform: rotate(7deg);
-    height: 74%;
-}
-
-.tallo:nth-child(6) {
-    transform: rotate(14deg);
-    height: 70%;
-}
-
-.tallo:nth-child(7) {
-    transform: rotate(21deg);
-    height: 65%;
-}
-
-.tallo:nth-child(8) {
-    transform: rotate(28deg);
-    height: 59%;
+    z-index: -2;
 }
 
 
@@ -537,42 +535,6 @@ body {
         drop-shadow(
             0 5px 4px rgba(0,0,0,.08)
         );
-}
-
-
-/* tallo individual */
-
-.flor::after {
-
-    content: "";
-
-    position: absolute;
-
-    left: 50%;
-
-    top: 62%;
-
-    width: 7px;
-
-    height: var(--stem);
-
-    transform:
-        translateX(-50%)
-        rotate(var(--stem-angle));
-
-    transform-origin: top center;
-
-    border-radius: 20px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #315c25,
-            #72a747,
-            #396b29
-        );
-
-    z-index: -2;
 }
 
 @keyframes flor-respirar {
@@ -794,7 +756,6 @@ body {
         );
 }
 
-
 .margarita .centro {
 
     position: absolute;
@@ -812,6 +773,7 @@ body {
 
     z-index: 10;
 }
+
 
 /* =========================================================
    ENVOLTURA CLÁSICA DEL RAMO
@@ -1097,110 +1059,162 @@ body {
 
         top: 2.5vh;
 
-        width: 92%;
+        width: 94%;
 
         font-size:
-            clamp(26px, 7vw, 40px);
+            clamp(23px, 6vw, 34px);
 
         line-height: 1.08;
     }
 
     .mensaje {
 
-        left: 3%;
+        left: 2%;
 
-        top: 48%;
+        top: 47%;
 
-        width: 44%;
+        width: 43%;
 
-        max-height: 63vh;
+        max-height: 61vh;
 
-        padding: 4px;
+        padding: 3px;
     }
 
     .mensaje h2 {
 
         font-size:
-            clamp(31px, 10vw, 53px);
+            clamp(25px, 7vw, 39px);
 
-        margin-bottom: 12px;
+        line-height: 1;
+
+        margin-bottom: 10px;
     }
 
     .mensaje p {
 
         font-size:
-            clamp(13px, 3.7vw, 19px);
+            clamp(11px, 3vw, 16px);
 
-        line-height: 1.35;
+        line-height: 1.32;
     }
+
+
+    /* FOTO */
+
+    .foto-amor {
+
+        left: 47%;
+
+        top: 74%;
+
+        width: 75px;
+        height: 75px;
+
+        border-width: 4px;
+    }
+
+
+    /* RAMO */
 
     .ramo {
 
-        right: -12%;
+        right: -10%;
 
         bottom: -1vh;
 
-        width: 67vw;
+        width: 61vw;
 
-        height: 73vh;
+        height: 67vh;
     }
+
+
+    /* FLORES MÁS PEQUEÑAS */
+
+    .flor {
+
+        transform:
+            translate(-50%, -50%)
+            rotate(var(--rot))
+            scale(
+                calc(var(--scale) * .68)
+            );
+    }
+
+
+    /* TALLOS MUCHO MÁS CORTOS */
+
+    .flor::after {
+
+        width: 3px;
+
+        height:
+            calc(var(--stem) * .42);
+    }
+
+
+    /* PAPEL MÁS GRANDE */
 
     .papel {
 
-        width: 55%;
+        width: 67%;
 
-        height: 47%;
+        height: 54%;
 
-        bottom: 6%;
+        bottom: 5%;
     }
 
     .punta-papel {
 
-        width: 22%;
+        width: 25%;
 
-        height: 18%;
+        height: 19%;
 
         bottom: 0;
     }
 
+
+    /* LISTÓN */
+
     .cinta {
 
-        bottom: 11%;
+        bottom: 10%;
 
-        width: 15%;
+        width: 17%;
 
-        height: 8%;
+        height: 7%;
     }
 
-    .hoja {
 
-        width: 75px;
-        height: 30px;
-    }
+    /* CONTADOR */
 
     .contador {
 
-        left: 10px;
-        bottom: 10px;
+        left: 8px;
 
-        font-size: 12px;
+        bottom: 8px;
+
+        font-size: 10px;
 
         padding:
-            7px 10px;
+            6px 9px;
     }
+
+
+    /* MÚSICA */
 
     .musica {
 
-        right: 10px;
-        bottom: 10px;
+        right: 8px;
+
+        bottom: 8px;
     }
 
     .musica button {
 
         padding:
-            8px 12px;
+            6px 10px;
 
-        font-size: 12px;
+        font-size: 10px;
     }
 }
 
@@ -1215,81 +1229,141 @@ body {
 
         top: 2vh;
 
-        font-size: 25px;
+        width: 94%;
+
+        font-size: 23px;
+
+        line-height: 1.08;
     }
+
 
     .mensaje {
 
         left: 2%;
 
-        top: 48%;
+        top: 47%;
 
-        width: 43%;
+        width: 42%;
 
-        max-height: 60vh;
+        max-height: 59vh;
     }
 
     .mensaje h2 {
 
-        font-size: 35px;
+        font-size: 27px;
+
+        line-height: 1;
+
+        margin-bottom: 9px;
     }
 
     .mensaje p {
 
-        font-size: 12px;
+        font-size: 10.5px;
 
-        line-height: 1.32;
+        line-height: 1.3;
     }
+
+
+    /* FOTO MÁS PEQUEÑA */
+
+    .foto-amor {
+
+        left: 47%;
+
+        top: 75%;
+
+        width: 65px;
+        height: 65px;
+
+        border-width: 3px;
+    }
+
+
+    /* RAMO */
 
     .ramo {
 
-        right: -21%;
+        right: -10%;
 
-        width: 72vw;
+        width: 61vw;
 
-        height: 68vh;
+        height: 65vh;
     }
+
+
+    /* FLORES TODAVÍA MÁS PEQUEÑAS */
+
+    .flor {
+
+        transform:
+            translate(-50%, -50%)
+            rotate(var(--rot))
+            scale(
+                calc(var(--scale) * .58)
+            );
+    }
+
+
+    /* TALLOS TODAVÍA MÁS CORTOS */
+
+    .flor::after {
+
+        width: 2.5px;
+
+        height:
+            calc(var(--stem) * .32);
+    }
+
+
+    /* ENVOLTURA */
 
     .papel {
 
-        width: 56%;
+        width: 70%;
 
-        height: 48%;
+        height: 57%;
 
         bottom: 5%;
     }
 
     .punta-papel {
 
-        width: 23%;
+        width: 27%;
 
-        height: 18%;
+        height: 20%;
 
         bottom: 0;
     }
 
+
+    /* LISTÓN */
+
     .cinta {
 
-        bottom: 10%;
+        bottom: 9%;
 
-        width: 16%;
+        width: 18%;
 
-        height: 8%;
+        height: 7%;
     }
+
 
     .contador {
 
-        font-size: 10px;
+        font-size: 9px;
+
+        padding:
+            5px 8px;
     }
 
     .musica button {
 
-        font-size: 10px;
+        font-size: 9px;
 
         padding:
-            7px 10px;
+            6px 9px;
     }
-
 }
 
 
@@ -1301,32 +1375,39 @@ body {
 
     .mensaje {
 
-        top: 50%;
+        top: 49%;
 
-        width: 44%;
+        width: 43%;
     }
 
     .mensaje p {
 
-        font-size: 13px;
+        font-size: 11px;
+    }
+
+    .foto-amor {
+
+        top: 75%;
+
+        width: 70px;
+        height: 70px;
     }
 
     .ramo {
 
-        right: -17%;
+        right: -8%;
 
-        width: 70vw;
+        width: 62vw;
 
-        height: 70vh;
+        height: 67vh;
     }
 
     .papel {
 
-        height: 49%;
+        height: 58%;
 
         bottom: 5%;
     }
-
 }
 
 </style>
@@ -1423,7 +1504,6 @@ body {
 
 <!-- =======================================================
      MENSAJE
-     ✏️ PUEDES CAMBIAR SOLAMENTE LO QUE ESTÁ AQUÍ
 ======================================================= -->
 
 <div class="mensaje">
@@ -1457,30 +1537,21 @@ body {
 
 
 <!-- =======================================================
+     FOTO DE USTEDES
+======================================================= -->
+
+<img
+    class="foto-amor"
+    src="foto.jpeg"
+    alt="Foto de ustedes"
+>
+
+
+<!-- =======================================================
      RAMO
 ======================================================= -->
 
 <div class="ramo">
-
-    <!-- Tallos principales -->
-
-    <div class="tallo"></div>
-    <div class="tallo"></div>
-    <div class="tallo"></div>
-    <div class="tallo"></div>
-    <div class="tallo"></div>
-    <div class="tallo"></div>
-    <div class="tallo"></div>
-    <div class="tallo"></div>
-
-
-    <!-- Hojas -->
-
-    <div class="hoja h1"></div>
-    <div class="hoja h2"></div>
-    <div class="hoja h3"></div>
-    <div class="hoja h4"></div>
-    <div class="hoja h5"></div>
 
     <!-- Las flores se generan por JavaScript -->
 
@@ -1584,6 +1655,7 @@ const flores = [
         delay:"-2s"
     },
 
+
     /* ===== GIRASOLES ===== */
 
     {
@@ -1611,6 +1683,7 @@ const flores = [
         stemAngle:13,
         delay:"-1.8s"
     },
+
 
     /* ===== GERBERAS ===== */
 
@@ -1652,6 +1725,7 @@ const flores = [
         stemAngle:22,
         delay:"-3s"
     },
+
 
     /* ===== MARGARITAS DEL CENTRO ===== */
 
@@ -1706,6 +1780,7 @@ const flores = [
         stemAngle:18,
         delay:"-2.7s"
     },
+
 
     /* ===== FLORES DEL FRENTE ===== */
 
@@ -2099,7 +2174,7 @@ function alternarMusica() {
 
 
 /* =========================================================
-   COMPROBACIÓN DE LA FOTO
+   COMPROBACIÓN DE LA FOTO DE PORTADA
 ========================================================= */
 
 function imagenNoEncontrada() {
